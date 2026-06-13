@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Zidan Nabhan - CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5a4bd1;
+            --secondary: #00cec9;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --darker: #1e272e;
+            --light: #f8f9fa;
+            --gray: #636e72;
+            --light-gray: #dfe6e9;
+            --gradient-1: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            --gradient-2: linear-gradient(135deg, #00cec9 0%, #81ecec 100%);
+            --gradient-3: linear-gradient(135deg, #fd79a8 0%, #fab1a0 100%);
+            --gradient-main: linear-gradient(135deg, #6c5ce7 0%, #00cec9 50%, #fd79a8 100%);
+            --shadow: 0 20px 60px rgba(108, 92, 231, 0.15);
+            --shadow-sm: 0 5px 20px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+            --radius-sm: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--darker);
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            background: var(--secondary);
+            top: 50%;
+            right: -150px;
+            animation-delay: -5s;
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            bottom: -100px;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* ===== PARTICLES ===== */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 20s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ===== PROFILE CARD ===== */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            padding: 50px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-main);
+        }
+
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: 800;
+            position: relative;
+            animation: avatarPulse 3s infinite ease-in-out;
+            box-shadow: 0 0 40px rgba(108, 92, 231, 0.3);
+        }
+
+        .profile-avatar::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: ringPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes avatarPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0; }
+        }
+
+        .profile-name {
+            font-size: 42px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-title {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .profile-contact {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .profile-contact a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-contact a:hover {
+            color: white;
+            border-color: var(--primary);
+            background: rgba(108, 92, 231, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .profile-contact a i {
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .section-icon.education {
+            background: var(--gradient-1);
+        }
+
+        .section-icon.skills {
+            background: var(--gradient-2);
+        }
+
+        .section-icon.experience {
+            background: var(--gradient-3);
+        }
+
+        .section-icon.about {
+            background: var(--gradient-main);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* ===== EDUCATION TIMELINE ===== */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(108, 92, 231, 0.2);
+            transform: translateX(5px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 28px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--darker);
+        }
+
+        .timeline-item:nth-child(1)::before { background: var(--primary); }
+        .timeline-item:nth-child(2)::before { background: var(--secondary); }
+        .timeline-item:nth-child(3)::before { background: var(--accent); }
+
+        .timeline-school {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .timeline-degree {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .timeline-year {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-sm);
+            padding: 18px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-item:hover {
+            border-color: var(--primary);
+            background: rgba(108, 92, 231, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.1);
+        }
+
+        .skill-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .skill-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: var(--gradient-main);
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-text {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* ===== QUOTE ===== */
+        .quote-section {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .quote-icon {
+            font-size: 40px;
+            color: rgba(108, 92, 231, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .quote-text {
+            font-size: 20px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .profile-card {
+                padding: 30px 20px;
+            }
+
+            .profile-name {
+                font-size: 28px;
+            }
+
+            .profile-title {
+                font-size: 14px;
+                letter-spacing: 2px;
+            }
+
+            .profile-contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .profile-contact a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section {
+                padding: 25px 20px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .timeline-item {
+                padding: 15px 18px;
+            }
+
+            .quote-text {
+                font-size: 16px;
+            }
+
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-name {
+                font-size: 22px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ===== LOADING ANIMATION ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
+        .fade-in-delay-5 { transition-delay: 0.5s; }
+
+        /* ===== GLOW EFFECT on hover ===== */
+        .glow-on-hover:hover {
+            box-shadow: 0 0 40px rgba(108, 92, 231, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Profile Card -->
+        <div class="profile-card fade-in visible">
+            <div class="profile-avatar">ZN</div>
+            <h1 class="profile-name">Muhammad Zidan Nabhan</h1>
+            <p class="profile-title">Student & Learner</p>
+            <div class="profile-contact">
+                <a href="mailto:zidannabhan2005@gmail.com">
+                    <i class="fas fa-envelope"></i> zidannabhan2005@gmail.com
+                </a>
+                <a href="#">
+                    <i class="fas fa-map-marker-alt"></i> Indonesia
+                </a>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="section fade-in fade-in-delay-1">
+            <div class="section-header">
+                <div class="section-icon about">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2 class="section-title">Tentang Saya</h2>
+            </div>
+            <div class="about-text">
+                <p>
+                    Saya adalah seorang pelajar yang bersemangat dalam menimba ilmu dan mengembangkan diri. 
+                    Dengan latar belakang pendidikan di <span class="highlight">pesantren</span> dan 
+                    <span class="highlight">sekolah umum</span>, saya memiliki dasar yang kuat dalam 
+                    nilai-nilai keislaman, kedisiplinan, dan semangat belajar yang tinggi.
+                </p>
+                <p>
+                    Saya percaya bahwa pendidikan adalah kunci untuk membuka pintu masa depan yang lebih baik. 
+                    Saya selalu berusaha untuk menjadi pribadi yang lebih baik setiap harinya, baik dalam 
+                    aspek akademik maupun non-akademik.
+                </p>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section fade-in fade-in-delay-2">
+            <div class="section-header">
+                <div class="section-icon education">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2 class="section-title">Riwayat Pendidikan</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-school">SDN Graha Cisait</div>
+                    <div class="timeline-degree">Sekolah Dasar</div>
+                    <span class="timeline-year"><i class="far fa-calendar-alt"></i> 2012 - 2018</span>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-school">MTs Sabilurahman Boarding School</div>
+                    <div class="timeline-degree">Madrasah Tsanawiyah</div>
+                    <span class="timeline-year"><i class="far fa-calendar-alt"></i> 2018 - 2021</span>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-school">MAs Daru Ihsan Boarding School</div>
+                    <div class="timeline-degree">Madrasah Aliyah</div>
+                    <span class="timeline-year"><i class="far fa-calendar-alt"></i> 2021 - 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="section fade-in fade-in-delay-3">
+            <div class="section-header">
+                <div class="section-icon skills">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h2 class="section-title">Keahlian & Minat</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon">📖</div>
+                    <div class="skill-name">Membaca & Menulis</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🗣️</div>
+                    <div class="skill-name">Public Speaking</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-width="75"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">💻</div>
+                    <div class="skill-name">Komputer Dasar</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-width="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🌍</div>
+                    <div class="skill-name">Bahasa Inggris</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-width="70"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">📚</div>
+                    <div class="skill-name">Belajar Mandiri</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🤝</div>
+                    <div class="skill-name">Kerja Sama Tim</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-width="80"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote Section -->
+        <div class="quote-section fade-in fade-in-delay-4">
+            <div class="quote-icon">
+                <i class="fas fa-quote-right"></i>
+            </div>
+            <p class="quote-text">
+                "Pendidikan adalah senjata paling ampuh yang bisa digunakan untuk mengubah dunia."
+                <br>
+                <span style="font-size: 14px; color: rgba(255,255,255,0.3); display: block; margin-top: 15px; font-style: normal;">
+                    — Nelson Mandela
+                </span>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            &copy; 2026 Muhammad Zidan Nabhan. Built with <i class="fas fa-heart" style="color: var(--accent);"></i>
+        </div>
+
+    </div>
+
+    <script>
+        // ===== PARTICLES =====
+        (function createParticles() {
+            const container = document.getElementById('particles');
+            const count = 50;
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 4 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 20 + 15) + 's';
+                particle.style.animationDelay = (Math.random() * 20) + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                container.appendChild(particle);
+            }
+        })();
+
+        // ===== SCROLL ANIMATIONS =====
+        (function scrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate skill bars within this section
+                        const bars = entry.target.querySelectorAll('.skill-bar-fill');
+                        bars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width + '%';
+                            }, 300);
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        })();
+
+        // ===== SMOOTH APPEAR ON LOAD =====
+        (function initialAnimations() {
+            setTimeout(() => {
+                document.querySelectorAll('.profile-card .skill-bar-fill').forEach(bar => {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                });
+            }, 500);
+        })();
+    </script>
+
+</body>
+</html>
